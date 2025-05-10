@@ -17,16 +17,19 @@
             background: #ffffff;
             color: #000000;
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         h1, h2, h3 {
             font-family: 'Unbounded', cursive;
         }
 
+        /* Container fix */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
 
         /* Navigation Menu */
@@ -39,12 +42,14 @@
             border-bottom: 1px solid #000;
             z-index: 1000;
             padding: 20px 0;
+            width: 100%;
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
 
         .nav-logo {
@@ -119,6 +124,7 @@
         .header {
             padding: 120px 0 80px;
             border-bottom: 1px solid #000;
+            width: 100%;
         }
 
         .hero {
@@ -193,6 +199,7 @@
         .portfolio {
             padding: 100px 0;
             border-bottom: 1px solid #000;
+            width: 100%;
         }
 
         .section-title {
@@ -258,6 +265,7 @@
             padding: 100px 0;
             background: #f8f8f8;
             border-bottom: 1px solid #000;
+            width: 100%;
         }
 
         .services-grid {
@@ -306,6 +314,7 @@
         .about {
             padding: 100px 0;
             border-bottom: 1px solid #000;
+            width: 100%;
         }
 
         .about-grid {
@@ -339,7 +348,7 @@
         .about-sparkle {
             position: absolute;
             top: -30px;
-            right: -30px;
+            right: 30px; /* Fixed from -30px to prevent overflow */
             font-size: 60px;
         }
 
@@ -379,6 +388,7 @@
         .testimonials {
             padding: 100px 0;
             border-bottom: 1px solid #000;
+            width: 100%;
         }
 
         .testimonials-grid {
@@ -442,6 +452,7 @@
             background: #f8f8f8;
             text-align: center;
             border-bottom: 1px solid #000;
+            width: 100%;
         }
 
         .final-cta-title {
@@ -480,6 +491,7 @@
             color: #000;
             padding: 60px 0;
             border-top: 1px solid #000;
+            width: 100%;
         }
 
         .footer-content {
@@ -557,12 +569,21 @@
         @media (max-width: 992px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px; /* Reduce padding */
             }
         }
 
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 0;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .nav-logo {
+                font-size: 18px; /* Smaller logo on mobile */
             }
 
             .nav-links {
@@ -592,7 +613,7 @@
             }
 
             .header {
-                padding-top: 100px;
+                padding: 80px 0 40px; /* Reduced padding */
             }
 
             .hero {
@@ -600,49 +621,131 @@
                 gap: 40px;
             }
 
+            .hero-content {
+                padding: 30px; /* Reduced padding */
+            }
+
+            .hero-title {
+                font-size: 28px; /* Smaller title */
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .hero-image {
+                position: relative;
+                overflow: hidden; /* Prevent sparkle overflow */
+            }
+
+            .hero-image img {
+                height: 400px; /* Smaller image height */
+            }
+
+            .sparkle-large {
+                top: -20px;
+                right: -20px;
+                font-size: 50px; /* Smaller sparkle */
+            }
+
+            .portfolio {
+                padding: 60px 0; /* Reduced padding */
+            }
+
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .services {
+                padding: 60px 0;
             }
 
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 20px;
+                padding: 0;
             }
 
             .service-card {
                 padding: 30px 20px;
             }
 
+            .about {
+                padding: 60px 0;
+            }
+
+            .about-content {
+                padding: 30px;
+            }
+
+            .about-sparkle {
+                top: -15px;
+                right: 15px;
+                font-size: 40px;
+            }
+
+            .testimonials {
+                padding: 60px 0;
+            }
+
             .testimonials-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                padding: 30px 20px;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Container adjustments for very small screens */
+            .container {
+                padding: 0 15px;
             }
 
             .hero-content {
                 padding: 20px;
             }
 
-            .about-content {
-                padding: 40px 20px;
+            .hero-title {
+                font-size: 24px;
             }
-        }
 
-        @media (max-width: 480px) {
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
             .portfolio-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
 
             .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 15px;
             }
 
             .service-card {
-                padding: 30px 20px;
+                padding: 25px 15px;
+            }
+
+            .service-icon {
+                font-size: 36px;
             }
 
             .service-title {
@@ -653,12 +756,56 @@
                 font-size: 14px;
             }
 
-            .hero-title {
-                font-size: 28px;
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 40px;
             }
 
-            .section-title {
-                font-size: 28px;
+            .about-content {
+                padding: 20px;
+            }
+
+            .about-text {
+                font-size: 16px;
+            }
+
+            .testimonial-card {
+                padding: 25px 15px;
+            }
+
+            .testimonial-text {
+                font-size: 16px;
+            }
+
+            .quote-icon {
+                font-size: 40px;
+                right: 15px;
+            }
+
+            .final-cta {
+                padding: 60px 0;
+            }
+
+            .final-cta-title {
+                font-size: 32px;
+            }
+
+            .final-cta-subtitle {
+                font-size: 18px;
+            }
+
+            .final-cta-button {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .footer-section {
+                padding: 15px;
+            }
+
+            .footer-legal a {
+                display: block;
+                margin: 10px 0;
             }
         }
     </style>
@@ -841,13 +988,6 @@
                 <div class="testimonial-card">
                     <div class="quote-icon">"</div>
                     <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">A Gabriela geriu as redes sociais da nossa empresa e gostamos muito do trabalho dela - responsável, cumpre os prazos, prepara os posts e stories em conformidade com o solicitado. Recomendamos imensamente o seu trabalho.</p>
-                    <p class="testimonial-author">Cliente 1</p>
-                    <p class="testimonial-company">Empresa</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-icon">"</div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">A Gabriela foi realmente excecional em tudo. Recomendo vivamente os seus serviços. Foi extremamente atenciosa e comunicativa, e criativa além do expectável. O que me surpreendeu foi a sua dedicação antes de apresentar a proposta, percebi imediatamente que se dedicou a estudar a marca primeiro, de forma a apresentar um trabalho individualizado, e não só uns templates bonitos.</p>
                     <p class="testimonial-author">Cliente 2</p>
                     <p class="testimonial-company">Empresa</p>
@@ -981,3 +1121,4 @@
     </script>
 </body>
 </html>
+                    
