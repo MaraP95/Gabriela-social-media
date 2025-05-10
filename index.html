@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriela Gomes - Social Media Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Unbounded', cursive;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Menu */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-bottom: 1px solid #000;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Unbounded', cursive;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            font-weight: 700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            transition: all 0.3s ease;
+        }
+
+        /* Sparkle Animation */
+        .sparkle {
+            display: inline-block;
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header Section */
+        .header {
+            padding: 120px 0 80px;
+            border-bottom: 1px solid #000;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding: 40px;
+            border: 1px solid #000;
+            background: #fff;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #000;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid #000;
+        }
+
+        .sparkle-large {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-size: 80px;
+            color: #000;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+            border-bottom: 1px solid #000;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .portfolio-item {
+            border: 1px solid #000;
+            background: #fff;
+            aspect-ratio: 9/16;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 1px solid #000;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .portfolio-category {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: #f8f8f8;
+            border-bottom: 1px solid #000;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .service-card {
+            padding: 50px 30px;
+            border: 1px solid #000;
+            background: #fff;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            border-bottom: 1px solid #000;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-images {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border: 1px solid #000;
+        }
+
+        .about-content {
+            padding: 60px;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .about-sparkle {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 60px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-images {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .about-image {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-images {
+                flex-direction: column;
+            }
+
+            .about-image {
+                width: 100%;
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            border-bottom: 1px solid #000;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .testimonial-card {
+            padding: 50px 40px;
+            border: 1px solid #000;
+            background: #fff;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .quote-icon {
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            opacity: 0.1;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .testimonial-company {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .testimonial-rating {
+            margin-bottom: 25px;
+            font-size: 18px;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            background: #f8f8f8;
+            text-align: center;
+            border-bottom: 1px solid #000;
+        }
+
+        .final-cta-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .final-cta-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .final-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 50px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #000;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .final-cta-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Footer */
+        footer {
+            background: #fff;
+            color: #000;
+            padding: 60px 0;
+            border-top: 1px solid #000;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-section {
+            padding: 20px;
+            border: 1px solid #000;
+        }
+
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .footer-cta {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #000;
+        }
+
+        .footer-sparkle {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .footer-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #000;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-legal {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #000;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid #000;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .header {
+                padding-top: 100px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+
+            .about-content {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .service-title {
+                font-size: 18px;
+            }
+
+            .service-description {
+                font-size: 14px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#home" class="nav-logo">GABRIELA GOMES</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="header">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">A tua presença digital começa aqui –</h1>
+                    <p class="hero-subtitle">estratégica, autêntica e inesquecível.</p>
+                    <p class="hero-description">Mestre em Educação, mas há dois anos que a gestão de redes sociais ocupam o meu coração. Esta é a área que me fascina e que já me deu a oportunidade de trabalhar com várias marcas e projetos de diferentes nichos.</p>
+                    <a href="mailto:gabrielasg.mkt@gmail.com" class="cta-button">
+                        Contactar <span class="sparkle">✦</span>
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img src="/api/placeholder/500/500" alt="Gabriela Gomes">
+                    <div class="sparkle sparkle-large">✦</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">PORTFÓLIO GESTÃO DE REDES SOCIAIS</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/700" alt="Projeto 1">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Instagram Story</h3>
+                        <p class="portfolio-category">Brand Campaign</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/700" alt="Projeto 2">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Feed Design</h3>
+                        <p class="portfolio-category">Visual Identity</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/700" alt="Projeto 3">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Reels Content</h3>
+                        <p class="portfolio-category">Video Marketing</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/700" alt="Projeto 4">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Product Launch</h3>
+                        <p class="portfolio-category">Campaign</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/700" alt="Projeto 5">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">TikTok Series</h3>
+                        <p class="portfolio-category">Content Strategy</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/700" alt="Projeto 6">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Carousel Posts</h3>
+                        <p class="portfolio-category">Engagement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Desenvolvimento de Estratégia</h3>
+                    <p class="service-description">Criação de estratégias personalizadas para alcançar os objetivos da marca.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Planeamento e Gestão de Conteúdos</h3>
+                    <p class="service-description">Calendário editorial e gestão completa de publicações.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Criação de Conteúdos</h3>
+                    <p class="service-description">Design de posts, stories, reels e vídeos criativos.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Gestão de Publicidade (Anúncios)</h3>
+                    <p class="service-description">Campanhas otimizadas para maximizar resultados.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Monitorização de Métricas</h3>
+                    <p class="service-description">Análise detalhada e relatórios de performance.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Crescimento de Seguidores e Engagement</h3>
+                    <p class="service-description">Estratégias para aumentar alcance e interação orgânica.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Criação e Gestão de Perfis</h3>
+                    <p class="service-description">Otimização de perfis para máxima conversão.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon sparkle">✦</span>
+                    <h3 class="service-title">Gestão de Orçamentos e Patrocínios</h3>
+                    <p class="service-description">Administração eficiente de recursos e parcerias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Gabriela Gomes</h2>
+            <div class="about-grid">
+                <div class="about-images">
+                    <img src="/api/placeholder/400/500" alt="Gabriela Gomes - Foto 1" class="about-image">
+                    <img src="/api/placeholder/400/500" alt="Gabriela Gomes - Foto 2" class="about-image">
+                </div>
+                <div class="about-content">
+                    <div class="about-sparkle sparkle">✦</div>
+                    <p class="about-text">
+                        Mestre em Educação, mas há dois anos que a gestão de redes sociais ocupam o meu coração. Esta é a área que me fascina e que já me deu a oportunidade de trabalhar com várias marcas e projetos de diferentes nichos, que me permitiram dar asas à minha criatividade e crescer enquanto profissional.
+                    </p>
+                    <p class="about-text">
+                        Adoro abraçar novos projetos e ideias irreverentes que exijam de mim um pensamento criativo e fora da caixa. Para suportar o meu trabalho, já fiz várias formações de gestão de redes sociais, das quais destaco o curso "Redes Sociais 360º" do formador e especialista Vasco Marques.
+                    </p>
+                    <p class="about-text">
+                        Deixo o convite para conhecer mais do meu trabalho neste portfólio.
+                    </p>
+                    <a href="mailto:gabrielasg.mkt@gmail.com" class="cta-button">
+                        Vamos conversar <span class="sparkle">✦</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Feedbacks GESTÃO DE REDES SOCIAIS</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">A Gabriela geriu as redes sociais da nossa empresa e gostamos muito do trabalho dela - responsável, cumpre os prazos, prepara os posts e stories em conformidade com o solicitado. Recomendamos imensamente o seu trabalho.</p>
+                    <p class="testimonial-author">Cliente 1</p>
+                    <p class="testimonial-company">Empresa</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">A Gabriela foi realmente excecional em tudo. Recomendo vivamente os seus serviços. Foi extremamente atenciosa e comunicativa, e criativa além do expectável. O que me surpreendeu foi a sua dedicação antes de apresentar a proposta, percebi imediatamente que se dedicou a estudar a marca primeiro, de forma a apresentar um trabalho individualizado, e não só uns templates bonitos.</p>
+                    <p class="testimonial-author">Cliente 2</p>
+                    <p class="testimonial-company">Empresa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="final-cta-title">VAMOS TRABALHAR JUNTOS?</h2>
+            <p class="final-cta-subtitle">Pede aqui o teu orçamento</p>
+            <a href="mailto:gabrielasg.mkt@gmail.com" class="final-cta-button">
+                Pedir Orçamento <span class="sparkle">✦</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Contacto</h3>
+                    <p class="footer-info">Gabriela Gomes</p>
+                    <p class="footer-info">Email: gabrielasg.mkt@gmail.com</p>
+                    <p class="footer-info">Instagram: @gabriela.gomes</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Serviços</h3>
+                    <p class="footer-info">Gestão de Redes Sociais</p>
+                    <p class="footer-info">Criação de Conteúdo</p>
+                    <p class="footer-info">Estratégia Digital</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Formação</h3>
+                    <p class="footer-info">Redes Sociais 360º</p>
+                    <p class="footer-info">Vasco Marques</p>
+                    <p class="footer-info">Mestre em Educação</p>
+                </div>
+            </div>
+            <div class="footer-cta">
+                <div class="footer-sparkle sparkle">✦</div>
+                <a href="mailto:gabrielasg.mkt@gmail.com" class="footer-button">
+                    Email <span class="sparkle">✦</span>
+                </a>
+            </div>
+            <div class="footer-legal">
+                <a href="/politica-privacidade">Política de Privacidade</a>
+                <a href="/termos-servico">Termos de Serviço</a>
+                <a href="https://www.livroreclamacoes.pt" target="_blank">Livro de Reclamações</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+                
+                // Scroll to target
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Add hover effect to sparkles
+        const sparkles = document.querySelectorAll('.sparkle');
+        sparkles.forEach(sparkle => {
+            sparkle.addEventListener('mouseenter', () => {
+                sparkle.style.transform = 'scale(1.2) rotate(180deg)';
+            });
+            
+            sparkle.addEventListener('mouseleave', () => {
+                sparkle.style.transform = 'scale(1) rotate(360deg)';
+            });
+        });
+
+        // Active menu item on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id], header[id], footer[id]');
+            const navItems = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.style.fontWeight = '700';
+                } else {
+                    item.style.fontWeight = '400';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
